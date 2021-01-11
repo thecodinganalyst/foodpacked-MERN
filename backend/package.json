@@ -1,0 +1,19 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Restful CRUD API using Express, MongoDB, Nodejs",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mongodb",
+    "express",
+    "nodejs",
+    "crud",
+    "rest",
+    "api"
+  ],
+  "author": "xinyi",
+  "license": "ISC"
+}
