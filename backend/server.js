@@ -18,22 +18,27 @@ app.use(bodyParser.json());
 
 const port = 8000;
 
+app.get("/", (req, res) => {
+  res.json({ message: "Hello server!" });
+});
+
+require("./app/routes/listingRoutes.js")(app);
+
+// The app.listen() function is used to bind and listen the connections on the specified host and port.
 app.listen(port, () => {
   console.log(`App listening at http://localhost:${port}`);
 });
 
-const db = require("./app/models");
-db.mongoose
-  .connect(db.url, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => {
-    console.log("Connected to database!");
-  })
-  .catch((err) => {
-    console.log("Cannot connect to database!", err);
-    process.exit();
-  });
+const mongoose = require("mongoose");
+mongoose.Promise = global.Promise;
+
+mongoose.connect("mongodb://localhost:27017/foodpacked_db", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 const db = mongoose.connection;
+db.once("open", function () {
+  console.log("Connected to database!");
+});
+db.on("error", console.error.bind(console, "Conection error:"));
