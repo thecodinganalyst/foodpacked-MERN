@@ -76,7 +76,6 @@ exports.retrieveById = (req, res) => {
 };
 
 // Update listing by ID in request
-
 exports.update = (req, res) => {
   if (!req.body) {
     return res.status(400).send({ message: "Empty field detected!" });
