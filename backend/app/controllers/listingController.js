@@ -63,15 +63,17 @@ exports.retrieveById = (req, res) => {
   Listing.findById(id)
     .then((data) => {
       if (!data) {
-        res.status(404).send({ message: `Listing with id ${id} not found!` });
+        res.status(404).send({
+          message: `Listing not found! (Listing ID: ${id})`,
+        });
       } else {
         res.send(data);
       }
     })
     .catch((err) => {
-      res
-        .status(500)
-        .send({ message: `Error in retrieving listing with id ${id}` });
+      res.status(500).send({
+        message: `Error in retrieving listing! (Listing ID: ${id})`,
+      });
     });
 };
 
@@ -83,11 +85,11 @@ exports.update = (req, res) => {
 
   const id = req.params.id;
 
-  Tutorial.findByIdAndUpdate(id, req.body, { useFindAndModify: false }).then(
+  Listing.findByIdAndUpdate(id, req.body, { useFindAndModify: false }).then(
     (data) => {
       if (!data) {
         res.status(404).send({
-          message: `Cannot update listing with id ${id}. Listing not found!`,
+          message: `Listing not found. Cannot update listing! (Listing ID: ${id}).`,
         });
       } else {
         res
@@ -96,7 +98,7 @@ exports.update = (req, res) => {
           })
           .catch((err) => {
             res.status(500).send({
-              message: `Error updating Listing with id ${id}`,
+              message: `Error updating listing. (Listing ID: ${id}).`,
             });
           });
       }
@@ -115,12 +117,16 @@ exports.delete = (req, res) => {
           message: `Listing with id ${id} not found. Unable to delete!`,
         });
       } else {
-        res.send({ message: `Deleted listing with id ${id}` });
+        const shopName = data.shopName;
+        const itemName = data.itemName;
+        res.send({
+          message: `Deleted ${itemName} from ${shopName} (Listing ID: ${id})!`,
+        });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: `Could not delete listing with id ${id}`,
+        message: `Could not delete listing (Listing ID: ${id}).`,
       });
     });
 };
