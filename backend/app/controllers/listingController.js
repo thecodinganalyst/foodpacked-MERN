@@ -57,7 +57,7 @@ exports.retrieve = (req, res) => {
 
 // Find a single listing using ID
 // may not be needed if finding by shopName/itemName later on FE
-exports.retrieveOne = (req, res) => {
+exports.retrieveById = (req, res) => {
   const id = req.params.id;
 
   Listing.findById(id)
