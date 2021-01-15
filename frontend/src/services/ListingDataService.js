@@ -20,6 +20,10 @@ class ListingDataService {
     return axios.get(`/listings/${id}`);
   }
 
+  retrieveByShopName(shopName) {
+    return axios.get(`listings?shopName=${shopName}`);
+  }
+
   update(id, data) {
     return axios.put(`/listings/${id}`, data);
   }
