@@ -1,38 +1,117 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  height: 100vh;
+  background: linear-gradient(#42275a, #734b6d);
+  /* background-image: url(https://images.unsplash.com/photo-1558689509-900d3d3cc727?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1053&q=80);
+  background-repeat: repeat-y;
+  background-size: 100%;
+  background-position: center; */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* .selector is class selector */
+/* #selector is id selector */
+/* .outline {
+  backdrop-filter: blur(10px) brightness(150%);
+  border: 0.7px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding-bottom: 2rem;
+} */
+
+.navbar-brand {
+  font-family: "Fredoka One", cursive;
+  font-size: 2rem;
+  letter-spacing: 4px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.container-input {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 280px;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
+  backdrop-filter: blur(10px) contrast(110%);
+  border: 0.7px solid rgba(255, 255, 255, 0.2);
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  justify-content: space-evenly;
+  color: #fff;
+  padding-bottom: 2rem;
+}
+
+.intro-text {
+  width: 260px;
+  height: 10px;
+  margin: 1rem;
+  font-size: 1.2rem;
+  color: #fff;
+  margin: 2rem 0 3rem 2rem;
+}
+
+.inputs {
+  width: 260px;
+  height: 260px;
+  margin-left: 2rem;
+}
+
+.name-input {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.name-input input {
+  /* width: 130px; */
+  height: 50px;
+  padding: 5px;
+  outline: none;
+  border: 0.5px solid #dbdbdb;
+  padding: 0.9rem;
+}
+
+#shopName input {
+  border-radius: 3px 0 0 3px;
+}
+
+#itemName input {
+  border-radius: 0 3px 3px 0;
+}
+
+input::placeholder {
+  color: #bfbfbf;
+}
+
+.badge-input {
+  border: 0.7px solid rgba(255, 255, 255, 0.2);
+  border-radius: 7px;
+  background: white;
+}
+
+.badge-input span {
+  color: black;
+  /* fix lengths of the input fields */
+  padding: 1rem;
+}
+
+.btn-submit {
+  width: 100px;
+  padding: 0.5rem;
+  border-radius: 10px;
+  border-color: white;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  background-color: rgba(255, 255, 255, 0);
+  text-emphasis-color: white;
   color: white;
+  text-align: center;
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btn-submit:active {
+  background-color: rgba(255, 255, 255, 0.3);
 }
