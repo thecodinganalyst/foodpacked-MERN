@@ -32,3 +32,5 @@ class ListingDataService {
     return axios.delete(`listings/${id}`);
   }
 }
+
+export default new ListingDataService();
