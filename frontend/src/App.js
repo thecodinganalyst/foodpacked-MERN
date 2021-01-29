@@ -2,8 +2,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import React, { Component } from "react";
 import { Link, Route, Switch } from "react-router-dom";
-import ListingsAndUpload from "./components/ListingsAndUpload";
-import ListingOnly from "./components/ListingOnly";
+import ListingsMain from "./components/ListingsMain";
+import EditListing from "./components/EditListing";
 
 class App extends Component {
   render() {
@@ -60,12 +60,8 @@ class App extends Component {
         <div className="container mt-3">
           <Switch>
             {/* change to a landing page for path "/" later */}
-            <Route
-              exact
-              path={["/", "/listings"]}
-              component={ListingsAndUpload}
-            />
-            <Route path="/listings/:id" component={ListingOnly} />
+            <Route exact path={["/", "/listings"]} component={ListingsMain} />
+            <Route path="/listings/:id" component={EditListing} />
           </Switch>
         </div>
       </div>
