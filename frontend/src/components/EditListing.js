@@ -90,7 +90,7 @@ const EditListing = (props) => {
         <div className="container-edit">
           <div className="intro-text">
             <h5>
-              Editing: <br /> abcdefg
+              Editing: <br /> {currentListing.itemName}
             </h5>
           </div>
 
