@@ -1,5 +1,5 @@
 module.exports = (mongoose) => {
-  var listingSchema = mongoose.Schema(
+  const listingSchema = mongoose.Schema(
     {
       shopName: String,
       itemName: String,

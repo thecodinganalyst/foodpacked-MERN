@@ -1,14 +1,19 @@
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
 
 body {
-  height: 100vh;
   background: linear-gradient(#42275a, #734b6d);
+  /* need to change later as content grows */
+  height: 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
+a {
+  text-decoration: none;
+  color: white;
+}
 /* ===== navbar ===== */
 .navbar-brand {
   font-family: "Fredoka One", cursive;
@@ -16,112 +21,45 @@ body {
   letter-spacing: 4px;
 }
 
-/* ===== edit listing ===== */
-.container-edit {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 280px;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  backdrop-filter: blur(10px) contrast(110%);
-  border: 0.7px solid rgba(255, 255, 255, 0.2);
-  align-items: center;
-  justify-content: space-evenly;
-  color: #fff;
-  padding-bottom: 2rem;
-}
-
-.intro-text {
-  width: 260px;
-  height: 10px;
-  margin: 1rem;
-  font-size: 1.2rem;
-  color: #fff;
-  margin: 2rem 0 3rem 2rem;
-}
-
-.inputs {
-  width: 260px;
-  height: 260px;
-  margin-left: 2rem;
-}
-
-.name-input {
-  display: flex;
-  margin-bottom: 1rem;
-}
-
-.name-input input {
-  /* width: 130px; */
-  height: 50px;
-  padding: 5px;
-  outline: none;
-  border: 0.5px solid #dbdbdb;
-  padding: 0.9rem;
-}
-
-#shopName input {
-  border-radius: 3px 0 0 3px;
-}
-
-#itemName input {
-  border-radius: 0 3px 3px 0;
-}
-
-input::placeholder {
-  color: #bfbfbf;
-}
-
-.badge-input {
-  border: 0.7px solid rgba(255, 255, 255, 0.2);
-  border-radius: 7px;
-  background: white;
-}
-
-.badge-input span {
-  color: black;
-  /* fix lengths of the input fields */
-  padding: 1rem;
-}
-
-.btn-submit {
-  width: 100px;
-  padding: 0.5rem;
-  border-radius: 10px;
-  border-color: white;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-  background-color: rgba(255, 255, 255, 0);
-  text-emphasis-color: white;
-  color: white;
-  text-align: center;
-  cursor: pointer;
-  margin-right: 1rem;
-}
-
-.btn-submit:active {
-  background-color: rgba(255, 255, 255, 0.3);
-}
-
 /* ===== main page ===== */
 /* ===== section header text ===== */
-.banner-text {
-  height: 10vh;
+.header-text {
   font-family: "Mansalva", cursive;
   color: white;
+  margin-top: 1rem;
 }
 
 /* ===== uploads scroll === */
-.container-scroll {
+.wrapper {
+  display: grid;
+  grid-template:
+    "." 23px
+    "." 10%
+    "uploads-scroll" 90%
+    / 1fr;
+  grid-gap: 1rem;
+  width: 80%;
+  margin-inline: auto;
+  margin-top: 1rem;
+  /* grid-template-columns: 1fr;
+  grid-template-rows: 23px 8% 75% 8%;
+  grid-template-areas:
+    "."
+    "."
+    "uploads-scroll"
+    "."; */
+}
+.uploads-scroll {
+  grid-area: uploads-scroll;
   overflow: auto;
   white-space: nowrap;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
 }
 
 .container-listing {
   box-shadow: 0px 10px 30px 0px rgba(0, 0, 0, 0.05);
-  padding: 1rem;
   border-radius: 35px;
   width: auto;
   position: relative;
@@ -144,8 +82,9 @@ input::placeholder {
   /* more abt scroll-snap-align: https://css-tricks.com/almanac/properties/s/scroll-snap-align/ */
   transition: all 0.25s;
   border: 2px solid #fff;
-  margin-right: 0.5rem;
+  margin-right: 1rem;
   white-space: normal;
+  text-decoration: none;
 }
 
 .listing-image {
@@ -179,7 +118,7 @@ input::placeholder {
   overflow-wrap: break-word;
 
   /* maintain consistent height of cards even if shopName is longer than 1 line */
-  height: 28vh;
+  height: 25vh;
 }
 
 .listing-text h3 {
@@ -195,14 +134,112 @@ input::placeholder {
   padding-top: 0px;
 }
 
-.listing-edit {
+.btn-edit {
   width: 100%;
   padding: 15px;
   background: linear-gradient(130deg, #42275a, #734b6d);
-  border: 0px;
   border-radius: 20px;
   color: #fff;
   font-weight: bold;
   font-size: 1rem;
   text-align: center;
+}
+
+/* ===== edit listing ===== */
+.container-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10vh;
+}
+
+.form-card {
+  /* position: relative; */
+  /*top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  backdrop-filter: blur(10px) contrast(110%);
+  border: 0.7px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 1rem;
+}
+
+.form-group {
+  margin-bottom: 0rem;
+}
+
+.intro-text {
+  width: 260px;
+  height: 10px;
+
+  font-size: 1.2rem;
+  color: #fff;
+  margin: 1rem 0 3rem 2rem;
+}
+
+input,
+.input-group-text {
+  margin-bottom: 1rem;
+}
+
+input::placeholder {
+  color: #bfbfbf;
+}
+
+.badge-input {
+  border: 0.7px solid rgba(255, 255, 255, 0.2);
+  border-radius: 7px;
+  background: white;
+}
+
+.badge-input span {
+  color: black;
+  /* fix lengths of the input fields */
+  padding: 1rem;
+}
+.btn-submit-container {
+  text-align: center;
+  margin: 1.5rem 0px 0px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.btn-submit {
+  width: 100px;
+  padding: 0.3rem;
+  border-radius: 10px;
+  border-color: white;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  background-color: rgba(255, 255, 255, 0);
+  text-emphasis-color: white;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+  margin: 0px 10px 5px 10px;
+}
+
+.btn-submit:active {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.btn-back-container {
+  width: 100%;
+}
+.btn-back {
+  width: 90%;
+  color: #734b6d;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  background: white;
+  text-align: center;
+  font-size: 1rem;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  font-weight: bold;
 }

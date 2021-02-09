@@ -22,8 +22,7 @@ const Listing = ({ listing }) => {
           )}
         </div>
         <div className="listing-price">${listing.price}</div>
-        {/* <div className="listing-edit"> */}{" "}
-        <Link to={"/listings/" + listing.id} className="listing-edit">
+        <Link to={"/listings/" + listing.id} className="btn-edit">
           Edit
         </Link>{" "}
       </div>

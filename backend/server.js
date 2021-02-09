@@ -15,8 +15,10 @@ app.use(cors(corsOptions));
 app.use(bodyParser.urlencoded({ extended: true }));
 // parse application/json
 app.use(bodyParser.json());
+// declare a public static folder. where client-side static file/output go.
+//app.use("/", express.static(_dirname + "/public"));
 
-const port = 8000;
+const port = process.env.PORT || 8000;
 
 app.get("/", (req, res) => {
   res.json({ message: "Hello server!" });
@@ -30,6 +32,7 @@ app.listen(port, () => {
 });
 
 const mongoose = require("mongoose");
+
 mongoose.Promise = global.Promise;
 
 mongoose.connect("mongodb://localhost:27017/foodpacked_db", {

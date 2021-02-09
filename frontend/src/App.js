@@ -1,16 +1,15 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import React, { Component } from "react";
-import { Link, Route, Switch } from "react-router-dom";
-import ListingsMain from "./components/ListingsMain";
+import { Route, Switch } from "react-router-dom";
+import ListingScroll from "./components/ListingScroll";
 import EditListing from "./components/EditListing";
+import AddListing from "./components/AddListing";
 
 class App extends Component {
   render() {
     return (
       <div>
-        {/* <nav classNameName="navbar outline navbar-light bg-light justify-content-between">
-         */}
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <div className="container-fluid">
             <a href="/listings" className="navbar-brand mb-0 h1">
@@ -42,28 +41,14 @@ class App extends Component {
               </div>
             </div>
           </div>
-
-          <form className="form-inline">
-            <input
-              className="form-control mr-sm-2 w-100"
-              type="search"
-              placeholder="Search a shop name or food item... "
-            />
-            <button
-              className="btn btn-outline-secondary my-2 my-sm-0"
-              type="submit"
-            >
-              Search
-            </button>
-          </form>
         </nav>
-        <div className="container mt-3">
-          <Switch>
-            {/* change to a landing page for path "/" later */}
-            <Route exact path={["/", "/listings"]} component={ListingsMain} />
-            <Route path="/listings/:id" component={EditListing} />
-          </Switch>
-        </div>
+
+        <Switch>
+          {/* change to a landing page for path "/" later */}
+          <Route exact path={["/", "/listings"]} component={ListingScroll} />
+          <Route path="/listings/:id" component={EditListing} />
+          <Route path="/add" component={AddListing} />
+        </Switch>
       </div>
     );
   }

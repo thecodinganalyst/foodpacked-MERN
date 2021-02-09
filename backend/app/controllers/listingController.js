@@ -1,5 +1,6 @@
-const e = require("express");
+const express = require("express");
 const mongoose = require("mongoose");
+
 const Listing = require("../models/listingModel.js")(mongoose);
 
 // use Mongoose helper functions for CRUD operations. Returns mongoose Query object.
@@ -82,28 +83,27 @@ exports.update = (req, res) => {
   if (!req.body) {
     return res.status(400).send({ message: "Empty field detected!" });
   }
-
   const id = req.params.id;
 
-  Listing.findByIdAndUpdate(id, req.body, { useFindAndModify: false }).then(
-    (data) => {
+  Listing.findByIdAndUpdate(id, req.body, {
+    useFindAndModify: false,
+  })
+    .then((data) => {
       if (!data) {
         res.status(404).send({
           message: `Listing not found. Cannot update listing! (Listing ID: ${id}).`,
         });
       } else {
-        res
-          .send({
-            message: "Hello I am the backend! Listing updated successfully!",
-          })
-          .catch((err) => {
-            res.status(500).send({
-              message: `Error updating listing. (Listing ID: ${id}).`,
-            });
-          });
+        res.send({
+          message: `Hello I am the backend! Listing updated successfully! ${data}`,
+        });
       }
-    }
-  );
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: `Error updating listing. (Listing ID: ${id}).`,
+      });
+    });
 };
 
 // Delete listing

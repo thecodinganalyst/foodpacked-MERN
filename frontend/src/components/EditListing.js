@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
+
 import ListingDataService from "../services/ListingDataService";
 
 const EditListing = (props) => {
+  const history = useHistory();
+
   const initialListingState = {
     id: null,
     shopName: "",
@@ -11,7 +15,6 @@ const EditListing = (props) => {
   };
 
   const [currentListing, setCurrentListing] = useState(initialListingState);
-  const [message, setMessage] = useState("");
 
   const getListing = (id) => {
     ListingDataService.retrieveById(id)
@@ -65,8 +68,8 @@ const EditListing = (props) => {
   const updateListing = () => {
     ListingDataService.update(currentListing.id, currentListing)
       .then((response) => {
-        console.log("updateListing response.data", response.data);
-        setMessage("Listing updated successfully!");
+        alert("Listing updated successfully!");
+        history.push("/");
       })
       .catch((err) => {
         console.log(err);
@@ -85,115 +88,94 @@ const EditListing = (props) => {
   };
 
   return (
-    <div>
-      {currentListing ? (
-        <div className="container-edit">
-          <div className="intro-text">
-            <h5>
-              Editing: <br /> {currentListing.itemName}
-            </h5>
+    <div className="container-form">
+      <div className="form-card">
+        <div className="intro-text">
+          <h5>
+            Editing: <br /> {currentListing.itemName}
+          </h5>
+        </div>
+
+        <div>
+          <div className="form-group">
+            <label>Shop name: </label>
+            <input
+              type="text"
+              className="form-control"
+              id="shopName"
+              name="shopName"
+              value={currentListing.shopName}
+              onChange={handleInputChange}
+            />
+
+            <label>Item name:</label>
+            <input
+              type="text"
+              className="form-control"
+              id="itemName"
+              name="itemName"
+              value={currentListing.itemName}
+              onChange={handleInputChange}
+            />
           </div>
 
-          <div>
-            <div className="form-group">
-              <label>Shop name: </label>
-              <input
-                type="text"
-                className="form-control"
-                id="shopName"
-                name="shopName"
-                value={currentListing.shopName}
-                onChange={handleInputChange}
-              />
-            </div>
-            <div className="form-group">
-              <label>Item name:</label>
-              <input
-                type="text"
-                className="form-control"
-                id="itemName"
-                name="itemName"
-                value={currentListing.itemName}
-                onChange={handleInputChange}
-              />
-            </div>
+          <label>Price: </label>
+          <div className="input-group-prepend">
+            <span className="input-group-text">$</span>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Price"
+              name="price"
+              value={currentListing.price}
+              onChange={handleInputChange}
+            />
+          </div>
+          {/* make a handler */}
 
-            <div className="form-group">
-              <label>Price: </label>
-              <div className="input-group-prepend">
-                <span className="input-group-text">$</span>
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Price"
-                  name="price"
-                  value={currentListing.price}
-                  onChange={handleInputChange}
-                />
-              </div>
-            </div>
-            {/* make a handler */}
-            <div className="form-group">
-              <label>Availability: </label>
-              <select
-                className="form-control"
-                // default value does not work here, doesn't change the shown value accordingly...i wonder why?
-                value={
-                  currentListing.available === true
-                    ? "available"
-                    : "unavailable"
-                }
-                onChange={(e) => {
-                  // setState is async but should be instant
-                  // if prob with async then will not be consistently giving opp values
-                  console.log("e.target.value", e.target.value);
-                  setCurrentListing({
-                    ...currentListing,
-                    available: e.target.value === "available" ? true : false,
-                  });
-                  // logging before the state is updated!
-                  // 28/1 check: React event loop, state updating?
-                  console.log("currentListing", currentListing);
-                }}
-              >
-                {" "}
-                {/* can only pass in string here, not boolean. but what you want to pass in is boolean! */}
-                <option value="available">Available</option>
-                <option value="unavailable">Unavailable</option>
-              </select>
-            </div>
+          <label>Availability: </label>
+          <select
+            className="form-control"
+            value={
+              currentListing.available === true ? "available" : "unavailable"
+            }
+            onChange={(e) => {
+              // setState is async but should be instant
+              // if prob with async then will not be consistently giving opp values
+              console.log("e.target.value", e.target.value);
+              setCurrentListing({
+                ...currentListing,
+                available: e.target.value === "available" ? true : false,
+              });
+              // logging before the state is updated!
+              // 28/1 check: React event loop, state updating?
+              console.log("currentListing", currentListing);
+            }}
+          >
+            {" "}
+            {/* can only pass in string here, not boolean. but what you want to pass in is boolean! */}
+            <option value="available">Available</option>
+            <option value="unavailable">Unavailable</option>
+          </select>
 
-            <p> {message}</p>
-
-            <br />
-
+          <div className="btn-submit-container">
             <button className="btn-submit" onClick={updateListing}>
               Update
             </button>
             <button className="btn-submit" onClick={deleteListing}>
               {" "}
-              Delete{" "}
+              Delete
             </button>
           </div>
-        </div>
-      ) : (
-        <div>
-          <p> Please click on a listing! </p>
-        </div>
-      )}
-      ;{/* make it to 2dp only later on */}
-      {/* <input
-                  type="number"
-                  placeholder="Price"
-                  min="1"
-                  step="0.10"
-                  data-number-to-fixed="2"
-                />
-              </div>
-            </div>
+          <div className="btn-submit-container">
+            {" "}
+            <Link to={"/listings"} className="btn-back">
+              Back
+            </Link>{" "}
           </div>
-        </div>{" "}
-        */}
+        </div>
+      </div>
+      {/* make price to 2dp only later on */}
     </div>
   );
 };
