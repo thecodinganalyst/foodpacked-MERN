@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 // declare a public static folder. where client-side static file/output go.
 //app.use("/", express.static(_dirname + "/public"));
 
-const port = process.env.PORT || 8000;
+const port = 8000;
 
 app.get("/", (req, res) => {
   res.json({ message: "Hello server!" });
