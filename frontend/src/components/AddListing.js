@@ -25,28 +25,37 @@ const AddListing = () => {
   };
 
   const saveNewListing = (e) => {
-    const data = {
-      shopName: listing.shopName,
-      itemName: listing.itemName,
-      price: listing.price,
-      available: true,
-    };
+    if (
+      listing.shopName === "" ||
+      listing.itemName === "" ||
+      listing.price === 0 ||
+      listing.price === ""
+    ) {
+      alert("Error: One or more fields are invalid. Please check!");
+    } else {
+      const data = {
+        shopName: listing.shopName,
+        itemName: listing.itemName,
+        price: listing.price,
+        available: true,
+      };
 
-    ListingDataService.create(data)
-      .then((response) => {
-        setListing({
-          id: response.data.id,
-          shopName: response.data.shopName,
-          itemName: response.data.itemName,
-          price: response.data.price,
-          available: response.data.available,
+      ListingDataService.create(data)
+        .then((response) => {
+          setListing({
+            id: response.data.id,
+            shopName: response.data.shopName,
+            itemName: response.data.itemName,
+            price: response.data.price,
+            available: response.data.available,
+          });
+          setSubmitted(true);
+          console.log("createListing response.data", response.data);
+        })
+        .catch((e) => {
+          console.log(e);
         });
-        setSubmitted(true);
-        console.log("createListing response.data", response.data);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+    }
   };
 
   return (
@@ -106,10 +115,11 @@ const AddListing = () => {
               <div className="input-group-prepend">
                 <div className="input-group-text">$</div>
                 <input
-                  type="text"
+                  type="number"
                   className="form-control"
                   id="price"
                   name="price"
+                  step="0.01"
                   required
                   value={listing.price}
                   onChange={handleInputChange}
