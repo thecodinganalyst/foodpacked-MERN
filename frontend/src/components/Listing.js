@@ -2,6 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Listing = ({ listing }) => {
+  const currformatter = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "SGD",
+  });
+
   return (
     <div className="container-listing">
       <div className="card">
@@ -21,7 +26,9 @@ const Listing = ({ listing }) => {
             <p style={{ color: "red", fontWeight: "bold" }}>Unavailable!</p>
           )}
         </div>
-        <div className="listing-price">${listing.price}</div>
+        <div className="listing-price">
+          {currformatter.format(listing.price)}
+        </div>
         <Link to={"/listings/" + listing.id} className="btn-edit">
           Edit
         </Link>{" "}
