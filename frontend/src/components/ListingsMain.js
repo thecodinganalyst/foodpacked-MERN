@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ListingDataService from "../services/ListingDataService";
+import ListingDataService from "../services/listingDataService";
 import Listing from "./Listing";
 
 const ListingsMain = () => {

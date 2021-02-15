@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import ListingDataService from "../services/ListingDataService";
+import ListingDataService from "../services/listingDataService";
+
+// fix to allow only 2 dp max for price
+// same for EditListing.js
 
 const AddListing = () => {
   const initialListingState = {
@@ -24,13 +27,20 @@ const AddListing = () => {
     setSubmitted(false);
   };
 
-  const saveNewListing = (e) => {
+  const validateInput = () => {
     if (
       listing.shopName === "" ||
       listing.itemName === "" ||
-      listing.price === 0 ||
-      listing.price === ""
+      listing.price === "" ||
+      listing.price === "0" ||
+      listing.price === 0
     ) {
+      return true;
+    }
+    return false;
+  };
+  const saveNewListing = (e) => {
+    if (validateInput() === true) {
       alert("Error: One or more fields are invalid. Please check!");
     } else {
       const data = {
@@ -120,7 +130,6 @@ const AddListing = () => {
                   id="price"
                   name="price"
                   step="0.01"
-                  required
                   value={listing.price}
                   onChange={handleInputChange}
                 />
