@@ -18,6 +18,9 @@ module.exports = (app) => {
   // Delete single listing
   router.delete("/:id", listings.delete);
 
+  // Delete all listings
+  router.delete("/", listings.deleteAll);
+
   // npm start loads /listings instead of /
   app.use("/api/listings", router);
 };

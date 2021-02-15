@@ -36,16 +36,7 @@ exports.create = (req, res) => {
 
 // Retrieve all listings
 exports.retrieve = (req, res) => {
-  // use req.query.shopName to get query string from Request.
-  // use it as condition for retrieveAll method.
-  const shopName = req.body.shopName;
-  var condition = shopName
-    ? { shopName: { $regex: new RegExp(shopName), $options: "i" } }
-    : {};
-
-  // find all documents that match
-  // If there are too many documents in the result to fit in memory, use Query.prototype.cursor()
-  Listing.find(condition)
+  Listing.find()
     .then((data) => {
       res.send(data);
     })
@@ -57,7 +48,6 @@ exports.retrieve = (req, res) => {
 };
 
 // Find a single listing using ID
-// may not be needed if finding by shopName/itemName later on FE
 exports.retrieveById = (req, res) => {
   const id = req.params.id;
 
@@ -128,6 +118,23 @@ exports.delete = (req, res) => {
       res.status(500).send({
         message: `Could not delete listing (Listing ID: ${id}).`,
       });
+    });
+};
+
+// Delete all listings
+// deleteMany deletes according to specified condition
+exports.deleteAll = (req, res) => {
+  Listing.deleteMany({})
+    .then((data) => {
+      res.send({
+        message: `${data.deletedCount} listings were deleted.`,
+      });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: err.message || "Some error occured while deleting listings.",
+      });
+      console.log(err);
     });
 };
 
