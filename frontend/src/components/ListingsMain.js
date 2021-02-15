@@ -42,7 +42,7 @@ const ListingsMain = () => {
           className="form-control"
           list="datalistOptions"
           id="searchbar"
-          placeholder="Search a shop or item name (case-sensitive)"
+          placeholder="Search a shop or item name"
           value={searchValue}
           onChange={searchChange}
         />
