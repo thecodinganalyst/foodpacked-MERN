@@ -66,7 +66,7 @@ const AddListing = () => {
               Add new listing!{" "}
             </button>
             <div className="btn-submit-container">
-              <Link to={"/listings"} className="btn-back">
+              <Link to={"/listings"} className="btn-custom">
                 Back
               </Link>
             </div>
@@ -143,10 +143,11 @@ const AddListing = () => {
 
               <div className="btn-submit-container">
                 {" "}
-                <Link to={"/listings"} className="btn-back">
+                <Link to={"/listings"} className="btn-custom">
                   Back
                 </Link>{" "}
               </div>
+              {/* did not opt for form with onSubmit handler here: want to check all fields are filled before submitting */}
             </div>
           </div>
         </div>

@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
-import ListingScroll from "./components/ListingScroll";
+import ListingsMain from "./components/ListingsMain";
 import EditListing from "./components/EditListing";
 import AddListing from "./components/AddListing";
 
@@ -45,7 +45,12 @@ class App extends Component {
 
         <Switch>
           {/* change to a landing page for path "/" later */}
-          <Route exact path={["/", "/listings"]} component={ListingScroll} />
+          {/* <Route exact path="/">
+            {" "}
+            <ListingsMain />
+            <AddListing />
+          </Route> */}
+          <Route exact path={["/", "/listings"]} component={ListingsMain} />
           <Route path="/listings/:id" component={EditListing} />
           <Route path="/add" component={AddListing} />
         </Switch>

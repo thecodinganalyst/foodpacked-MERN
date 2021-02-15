@@ -4,13 +4,12 @@
 
 body {
   background: linear-gradient(#42275a, #734b6d);
-  /* need to change later as content grows */
   height: 100%;
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
 
-a {
+a:hover {
   text-decoration: none;
   color: white;
 }
@@ -33,14 +32,14 @@ a {
 .wrapper {
   display: grid;
   grid-template:
-    "." 23px
+    "search" 45px
     "." 10%
     "uploads-scroll" 90%
     / 1fr;
   grid-gap: 1rem;
   width: 80%;
   margin-inline: auto;
-  margin-top: 1rem;
+  margin-top: 2rem;
   /* grid-template-columns: 1fr;
   grid-template-rows: 23px 8% 75% 8%;
   grid-template-areas:
@@ -49,6 +48,20 @@ a {
     "uploads-scroll"
     "."; */
 }
+
+.search-container {
+  grid-area: search;
+  display: grid;
+  grid-template: "." 1fr "." 1fr "." 1fr / auto 15% 10%;
+  /* grid-auto-flow: row; */
+  grid-gap: 1rem;
+}
+
+#searchbar {
+  height: 100%;
+  width: 100%;
+}
+
 .uploads-scroll {
   grid-area: uploads-scroll;
   overflow: auto;
@@ -72,16 +85,13 @@ a {
 .card {
   box-shadow: 0px 10px 30px 0px rgba(0, 0, 0, 0.05);
   padding: 15px;
-  border-radius: 35px;
+  border-radius: 20px;
   width: 260px;
   min-width: 260px;
-  /* position: relative; */
   margin: 0px 15px;
   background: #ffffff;
   scroll-snap-align: center;
-  /* more abt scroll-snap-align: https://css-tricks.com/almanac/properties/s/scroll-snap-align/ */
   transition: all 0.25s;
-  border: 2px solid #fff;
   margin-right: 1rem;
   white-space: normal;
   text-decoration: none;
@@ -93,7 +103,7 @@ a {
   align-items: center;
   justify-content: center;
   height: 220px;
-  border-radius: 30px;
+  border-radius: 15px;
   background: #f5f5f5;
 }
 
@@ -154,10 +164,6 @@ a {
 }
 
 .form-card {
-  /* position: relative; */
-  /*top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); */
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -231,9 +237,10 @@ input::placeholder {
 .btn-back-container {
   width: 100%;
 }
-.btn-back {
-  width: 90%;
+.btn-custom {
+  width: 100%;
   color: #734b6d;
+  height: 100%;
   padding: 0.5rem;
   margin-bottom: 1rem;
   border-radius: 10px;
@@ -242,4 +249,10 @@ input::placeholder {
   font-size: 1rem;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
   font-weight: bold;
+}
+
+.btn-custom:hover {
+  color: white;
+  background: linear-gradient(130deg, #42275a, #734b6d);
+  border: solid white 1px;
 }

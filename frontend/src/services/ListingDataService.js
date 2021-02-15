@@ -1,8 +1,7 @@
 import axios from "axios";
 
 axios.defaults.baseURL = "http://localhost:8000/api";
-axios.defaults.headers.post["Content-Type"] = "multipart/form-data";
-// cloudinary_url = "https://api.cloudinary.com/v1_1/xinyit";
+axios.defaults.headers.post["Content-Type"] = "application/json";
 
 class ListingDataService {
   create(data) {
@@ -19,10 +18,6 @@ class ListingDataService {
 
   retrieveById(id) {
     return axios.get(`/listings/${id}`);
-  }
-
-  retrieveByShopName(shopName) {
-    return axios.get(`listings?shopName=${shopName}`);
   }
 
   update(id, data) {
