@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 
-import ListingDataService from "../services/ListingDataService";
+import ListingDataService from "../services/listingDataService";
 
 const EditListing = (props) => {
-  const history = useHistory();
-
   const initialListingState = {
     id: null,
     shopName: "",
@@ -15,25 +13,24 @@ const EditListing = (props) => {
   };
 
   const [currentListing, setCurrentListing] = useState(initialListingState);
+  const [editItem, setEditItem] = useState("");
+  const history = useHistory();
+
+  useEffect(() => {
+    getListing(props.match.params.id);
+  }, [props.match.params.id]);
 
   const getListing = (id) => {
     ListingDataService.retrieveById(id)
       .then((response) => {
         setCurrentListing(response.data);
+        setEditItem(response.data.itemName);
         console.log("Retrieving individual tutorial", response.data);
       })
       .catch((err) => {
         console.log(err);
       });
   };
-
-  useEffect(() => {
-    getListing(props.match.params.id);
-  }, [props.match.params.id]);
-
-  useEffect(() => {
-    console.log("hi", currentListing);
-  }, [currentListing]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -65,15 +62,32 @@ const EditListing = (props) => {
   //     });
   // };
 
+  const validateInput = () => {
+    if (
+      currentListing.shopName === "" ||
+      currentListing.itemName === "" ||
+      currentListing.price === "" ||
+      currentListing.price === "0" ||
+      currentListing.price === 0
+    ) {
+      return true;
+    }
+    return false;
+  };
+
   const updateListing = () => {
-    ListingDataService.update(currentListing.id, currentListing)
-      .then((response) => {
-        alert("Listing updated successfully!");
-        history.push("/");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (validateInput() === true) {
+      alert("Error: One or more fields are invalid. Please check!");
+    } else {
+      ListingDataService.update(currentListing.id, currentListing)
+        .then((response) => {
+          alert("Listing updated successfully!");
+          history.push("/");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
   const deleteListing = () => {
@@ -92,7 +106,7 @@ const EditListing = (props) => {
       <div className="form-card">
         <div className="intro-text">
           <h5>
-            Editing: <br /> {currentListing.itemName}
+            Editing: <br /> {editItem}
           </h5>
         </div>
 
@@ -114,6 +128,7 @@ const EditListing = (props) => {
               className="form-control"
               id="itemName"
               name="itemName"
+              required
               value={currentListing.itemName}
               onChange={handleInputChange}
             />
@@ -123,10 +138,12 @@ const EditListing = (props) => {
           <div className="input-group-prepend">
             <span className="input-group-text">$</span>
             <input
-              type="text"
+              type="number"
               className="form-control"
-              placeholder="Price"
+              id="price"
               name="price"
+              step="0.01"
+              required
               value={currentListing.price}
               onChange={handleInputChange}
             />
@@ -169,7 +186,7 @@ const EditListing = (props) => {
           </div>
           <div className="btn-submit-container">
             {" "}
-            <Link to={"/listings"} className="btn-back">
+            <Link to={"/listings"} className="btn-custom">
               Back
             </Link>{" "}
           </div>
