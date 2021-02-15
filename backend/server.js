@@ -11,10 +11,11 @@ var corsOptions = {
 
 app.use(cors(corsOptions));
 
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
 // parse application/json
 app.use(bodyParser.json());
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
+
 // declare a public static folder. where client-side static file/output go.
 //app.use("/", express.static(_dirname + "/public"));
 

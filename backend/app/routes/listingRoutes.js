@@ -9,10 +9,6 @@ module.exports = (app) => {
   // Retrieve all listings
   router.get("/", listings.retrieve);
 
-  // Retrieve by availability: include before ID.
-  // otherwise, will take id = available and find by ID "available"
-  router.get("/available", listings.retrieveAvailable);
-
   // Retrieve by id
   router.get("/:id", listings.retrieveById);
 
