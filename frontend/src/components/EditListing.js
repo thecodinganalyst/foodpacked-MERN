@@ -91,10 +91,11 @@ const EditListing = (props) => {
   };
 
   const deleteListing = () => {
+    // add alert for delete indiv!
     ListingDataService.delete(currentListing.id)
       .then((response) => {
         console.log("deleteListing response.data", response.data);
-        props.history.push("/listings");
+        history.push("/listings");
       })
       .catch((err) => {
         console.log(err);
