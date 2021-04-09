@@ -21,6 +21,9 @@ module.exports = (app) => {
   // Delete all listings
   router.delete("/", listings.deleteAll);
 
+  // // Find available
+  // router.get("/available", listings.retrieveAvailable);
+
   // npm start loads /listings instead of /
   app.use("/api/listings", router);
 };
