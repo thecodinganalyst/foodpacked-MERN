@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
   res.json({ message: "Hello server!" });
 });
 
-require("./app/routes/listingRoutes.js")(app);
+require("./routes/listingRoutes.js")(app);
 
 // The app.listen() function is used to bind and listen the connections on the specified host and port.
 app.listen(PORT, () => {
