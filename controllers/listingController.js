@@ -5,8 +5,7 @@ const Listing = require("../models/listingModel.js")(mongoose);
 
 // use Mongoose helper functions for CRUD operations. Returns mongoose Query object.
 
-// Create & save listing
-exports.create = (req, res) => {
+exports.createNewListing = (req, res) => {
   // validate request
   if (!req.body.shopName) {
     res.status(400).send({ message: "Content is empty!" });
@@ -21,55 +20,52 @@ exports.create = (req, res) => {
     available: req.body.available ? req.body.available : false,
   });
 
-  // Save tutorial
+  // Save listing
   listing
-    .save(listing)
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
-      res
-        .status(500)
-        .send({ message: err.message || "Failed to create listing!" });
-    });
-};
-
-// Retrieve all listings
-exports.retrieve = (req, res) => {
-  Listing.find()
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: err.message || "Failed to retrieve listings!",
+      .save(listing)
+      .then((data) => {
+        res.send(data);
+      })
+      .catch((err) => {
+        res
+            .status(500)
+            .send({ message: err.message || "Failed to create listing!" });
       });
-    });
 };
 
-// Find a single listing using ID
-exports.retrieveById = (req, res) => {
+exports.retrieveAllListings = (req, res) => {
+  Listing.find()
+      .then((data) => {
+        res.send(data);
+      })
+      .catch((err) => {
+        res.status(500).send({
+          message: err.message || "Failed to retrieve listings!",
+        });
+      });
+};
+
+exports.retrieveListingById = (req, res) => {
   const id = req.params.id;
 
   Listing.findById(id)
-    .then((data) => {
-      if (!data) {
-        res.status(404).send({
-          message: `Listing not found! (Listing ID: ${id})`,
+      .then((data) => {
+        if (!data) {
+          res.status(404).send({
+            message: `Listing not found! (Listing ID: ${id})`,
+          });
+        } else {
+          res.send(data);
+        }
+      })
+      .catch((err) => {
+        res.status(500).send({
+          message: `Error in retrieving listing! (Listing ID: ${id})`,
         });
-      } else {
-        res.send(data);
-      }
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: `Error in retrieving listing! (Listing ID: ${id})`,
       });
-    });
 };
 
-// Update listing by ID in request
-exports.update = (req, res) => {
+exports.updateListingById = (req, res) => {
   if (!req.body) {
     return res.status(400).send({ message: "Empty field detected!" });
   }
@@ -78,75 +74,73 @@ exports.update = (req, res) => {
   Listing.findByIdAndUpdate(id, req.body, {
     useFindAndModify: false,
   })
-    .then((data) => {
-      if (!data) {
-        res.status(404).send({
-          message: `Listing not found. Cannot update listing! (Listing ID: ${id}).`,
+      .then((data) => {
+        if (!data) {
+          res.status(404).send({
+            message: `Listing not found. Cannot update listing! (Listing ID: ${id}).`,
+          });
+        } else {
+          res.send({
+            message: `Hello I am the backend! Listing updated successfully! ${data}`,
+          });
+        }
+      })
+      .catch((err) => {
+        res.status(500).send({
+          message: `Error updating listing. (Listing ID: ${id}).`,
         });
-      } else {
-        res.send({
-          message: `Hello I am the backend! Listing updated successfully! ${data}`,
-        });
-      }
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: `Error updating listing. (Listing ID: ${id}).`,
       });
-    });
 };
 
-// Delete listing
-exports.delete = (req, res) => {
+exports.deleteSingleListing = (req, res) => {
   const id = req.params.id;
 
   Listing.findByIdAndDelete(id)
-    .then((data) => {
-      if (!data) {
-        res.status(404).send({
-          message: `Listing with id ${id} not found. Unable to delete!`,
+      .then((data) => {
+        if (!data) {
+          res.status(404).send({
+            message: `Listing with id ${id} not found. Unable to delete!`,
+          });
+        } else {
+          const shopName = data.shopName;
+          const itemName = data.itemName;
+          res.send({
+            message: `Deleted ${itemName} from ${shopName} (Listing ID: ${id})!`,
+          });
+        }
+      })
+      .catch((err) => {
+        res.status(500).send({
+          message: `Could not delete listing (Listing ID: ${id}).`,
         });
-      } else {
-        const shopName = data.shopName;
-        const itemName = data.itemName;
-        res.send({
-          message: `Deleted ${itemName} from ${shopName} (Listing ID: ${id})!`,
-        });
-      }
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: `Could not delete listing (Listing ID: ${id}).`,
       });
-    });
 };
 
-// Delete all listings
 // deleteMany deletes according to specified condition
-exports.deleteAll = (req, res) => {
+exports.deleteAllListings = (req, res) => {
   Listing.deleteMany({})
-    .then((data) => {
-      res.send({
-        message: `${data.deletedCount} listings were deleted.`,
+      .then((data) => {
+        res.send({
+          message: `${data.deletedCount} listings were deleted.`,
+        });
+      })
+      .catch((err) => {
+        res.status(500).send({
+          message: err.message || "Some error occured while deleting listings.",
+        });
+        console.log(err);
       });
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: err.message || "Some error occured while deleting listings.",
-      });
-      console.log(err);
-    });
 };
 
 // find all listings that are available
 exports.retrieveAvailable = (req, res) => {
   Listing.find({ available: true })
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: err.message || "Unable to retrieve!",
+      .then((data) => {
+        res.send(data);
+      })
+      .catch((err) => {
+        res.status(500).send({
+          message: err.message || "Unable to retrieve!",
+        });
       });
-    });
 };
