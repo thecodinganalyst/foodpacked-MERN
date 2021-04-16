@@ -2,10 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import ListingDataService from "../services/listingDataService";
 
-// fix to allow only 2 dp max for price
-// consider using inbuilt mongo function to round req data to 2 dp and store in 2 dp
-// same for EditListing.js
-
 const AddListing = () => {
   const initialListingState = {
     id: null,

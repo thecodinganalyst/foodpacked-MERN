@@ -3,7 +3,6 @@ import { useHistory, Link } from "react-router-dom";
 import ListingDataService from "../services/listingDataService";
 import Listing from "./Listing";
 
-
 const ListingsMain = () => {
   const [listings, setListings] = useState([]);
   const [searchValue, setSearchValue] = useState("");

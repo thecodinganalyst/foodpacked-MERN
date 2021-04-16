@@ -40,28 +40,6 @@ const EditListing = (props) => {
     console.log("Current listing after handleInputChange", currentListing);
   };
 
-  //fix later. the value is set as inverse of expected
-  // const updateAvailability = (value) => {
-  // var data = {
-  //   available: value === "available" ? true : false,
-  // };
-  //   ListingDataService.update(currentListing.id, currentListing.available)
-  //     .then((response) => {
-  //       // set state outside promise because there is a time de
-  //       // does not immediately change state even after setState is called
-  //       console.log("currentListing after update", currentListing);
-  //       // huh backend here shows the opposite availability
-  //       setMessage(
-  //         `Listing now ${
-  //           currentListing.available ? "available" : "unavailable"
-  //         }!`
-  //       );
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
-
   const validateInput = () => {
     if (
       currentListing.shopName === "" ||
@@ -149,7 +127,6 @@ const EditListing = (props) => {
               onChange={handleInputChange}
             />
           </div>
-          {/* make a handler */}
 
           <label>Availability: </label>
           <select
@@ -158,20 +135,15 @@ const EditListing = (props) => {
               currentListing.available === true ? "available" : "unavailable"
             }
             onChange={(e) => {
-              // setState is async but should be instant
-              // if prob with async then will not be consistently giving opp values
               console.log("e.target.value", e.target.value);
               setCurrentListing({
                 ...currentListing,
                 available: e.target.value === "available" ? true : false,
               });
-              // logging before the state is updated!
-              // 28/1 check: React event loop, state updating?
               console.log("currentListing", currentListing);
             }}
           >
             {" "}
-            {/* can only pass in string here, not boolean. but what you want to pass in is boolean! */}
             <option value="available">Available</option>
             <option value="unavailable">Unavailable</option>
           </select>
