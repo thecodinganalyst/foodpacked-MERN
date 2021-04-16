@@ -5,8 +5,7 @@ const Listing = require("../models/listingModel.js")(mongoose);
 
 // use Mongoose helper functions for CRUD operations. Returns mongoose Query object.
 
-// Create & save listing
-exports.create = (req, res) => {
+exports.createNewListing = (req, res) => {
   // validate request
   if (!req.body.shopName) {
     res.status(400).send({ message: "Content is empty!" });
@@ -21,7 +20,7 @@ exports.create = (req, res) => {
     available: req.body.available ? req.body.available : false,
   });
 
-  // Save tutorial
+  // Save listing
   listing
     .save(listing)
     .then((data) => {
@@ -34,8 +33,7 @@ exports.create = (req, res) => {
     });
 };
 
-// Retrieve all listings
-exports.retrieve = (req, res) => {
+exports.retrieveAllListings = (req, res) => {
   Listing.find()
     .then((data) => {
       res.send(data);
@@ -47,8 +45,7 @@ exports.retrieve = (req, res) => {
     });
 };
 
-// Find a single listing using ID
-exports.retrieveById = (req, res) => {
+exports.retrieveListingById = (req, res) => {
   const id = req.params.id;
 
   Listing.findById(id)
@@ -68,8 +65,7 @@ exports.retrieveById = (req, res) => {
     });
 };
 
-// Update listing by ID in request
-exports.update = (req, res) => {
+exports.updateListingById = (req, res) => {
   if (!req.body) {
     return res.status(400).send({ message: "Empty field detected!" });
   }
@@ -96,8 +92,7 @@ exports.update = (req, res) => {
     });
 };
 
-// Delete listing
-exports.delete = (req, res) => {
+exports.deleteSingleListing = (req, res) => {
   const id = req.params.id;
 
   Listing.findByIdAndDelete(id)
@@ -121,9 +116,8 @@ exports.delete = (req, res) => {
     });
 };
 
-// Delete all listings
 // deleteMany deletes according to specified condition
-exports.deleteAll = (req, res) => {
+exports.deleteAllListings = (req, res) => {
   Listing.deleteMany({})
     .then((data) => {
       res.send({

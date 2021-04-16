@@ -3,26 +3,17 @@ module.exports = (app) => {
 
   const router = require("express").Router();
 
-  // Create new listing:
-  router.post("/", listings.create);
+  router.post("/", listings.createNewListing);
 
-  // Retrieve all listings
-  router.get("/", listings.retrieve);
+  router.get("/", listings.retrieveAllListings);
 
-  // Retrieve by id
-  router.get("/:id", listings.retrieveById);
+  router.get("/:id", listings.retrieveListingById);
 
-  // Update
-  router.put("/:id", listings.update);
+  router.put("/:id", listings.updateListingById);
 
-  // Delete single listing
-  router.delete("/:id", listings.delete);
+  router.delete("/:id", listings.deleteSingleListing);
 
-  // Delete all listings
-  router.delete("/", listings.deleteAll);
-
-  // // Find available
-  // router.get("/available", listings.retrieveAvailable);
+  router.delete("/", listings.deleteAllListings);
 
   // npm start loads /listings instead of /
   app.use("/api/listings", router);
