@@ -1,7 +1,6 @@
 import axios from "axios";
 
-// commented out for production
-// axios.defaults.baseURL = "http://localhost:8080/api";
+axios.defaults.baseURL = "http://localhost:8080/api";
 axios.defaults.headers.post["Content-Type"] = "application/json";
 
 class ListingDataService {
