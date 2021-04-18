@@ -21,6 +21,7 @@ app.use(express.static(path.join(__dirname, "client", "build")))
 
 const PORT = process.env.PORT || 8080;
 const secret = process.env.SECRET || "hello secret";
+const uri = process.env.MONGODB_URI;
 
 app.get("/", (req, res) => {
   res.json({ message: "Hello server!" });
