@@ -26,6 +26,9 @@ app.get("/", (req, res) => {
   res.json({ message: "Hello server!" });
 });
 
+// const routes = require('./routes/listingRoutes.js');
+// app.use('/api', routes);
+
 require("./routes/listingRoutes.js")(app);
 
 // catch-all, send the main index.html file back to the client if it didn't receive an unrecognized request
