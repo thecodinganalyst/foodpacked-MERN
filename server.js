@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 // Express to send static files to client
 app.use(express.static(path.join(__dirname, "client", "build")))
 
-const PORT = process.env.PORT || 8080;
+const port = process.env.PORT || 8080;
 const secret = process.env.SECRET || "hello secret";
 const mongo_uri = process.env.MONGODB_URI;
 
@@ -34,15 +34,15 @@ app.get("*", (req, res) => {
 });
 
 // The app.listen() function is used to bind and listen the connections on the specified host and port.
-app.listen(PORT, () => {
-  console.log(`App listening at ${PORT}`);
+app.listen(port, () => {
+  console.log(`App listening at ${port}`);
 });
 
 const mongoose = require("mongoose");
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect(mongo_uri,  {
+mongoose.connect(`mongodb://${mongo_uri}`,  {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false})
