@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const path = require("path");
 const app = express();
+const dotenv = require("dotenv").config()
 
 // CORS-enabled for only localhost:8081
 var corsOptions = {
@@ -19,6 +20,7 @@ app.use(express.static(path.join(__dirname, "client/build")));
 app.use(express.static(path.join(__dirname, "client", "build")))
 
 const PORT = process.env.PORT || 8080;
+const secret = process.env.SECRET || "hello secret";
 
 app.get("/", (req, res) => {
   res.json({ message: "Hello server!" });
