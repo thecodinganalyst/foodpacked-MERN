@@ -29,7 +29,7 @@ app.get("/", (req, res) => {
 // const routes = require('./routes/listingRoutes.js');
 // app.use('/api', routes);
 
-require("./routes/listingRoutes.js")(app);
+require(__dirname + "/routes/listingRoutes.js")(app);
 
 // catch-all, send the main index.html file back to the client if it didn't receive an unrecognized request
 app.get("*", (req, res) => {
