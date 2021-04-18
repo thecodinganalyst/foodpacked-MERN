@@ -1,7 +1,5 @@
-import path from "path";
-
 module.exports = (app) => {
-  const listings = require(path.basename(__dirname) + "/controllers/listingController.js");
+  const listings = require("../controllers/listingController.js");
 
   const router = require("express").Router();
 
