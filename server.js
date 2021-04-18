@@ -4,17 +4,16 @@ const path = require("path");
 const app = express();
 const dotenv = require("dotenv").config()
 
-// CORS-enabled for only localhost:8081
-var corsOptions = {
-  origin: "http://localhost:8081",
-};
+// // CORS-enabled for only localhost:8081
+// var corsOptions = {
+//   origin: "http://localhost:8081",
+// };
 
-app.use(cors(corsOptions));
+app.use(cors);
 
 // BodyParser middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "client/build")));
 
 // Express to send static files to client
 app.use(express.static(path.join(__dirname, "client", "build")))
@@ -43,13 +42,10 @@ const mongoose = require("mongoose");
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect(mongo_uri, {
+mongoose.connect(mongo_uri,  {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-});
+  useFindAndModify: false})
+    .then(() => console.log("Database Connected Successfully"))
+    .catch(err => console.log(err));
 
-const db = mongoose.connection;
-db.once("open", function () {
-  console.log("Connected to database!");
-});
-db.on("error", console.error.bind(console, "Connection error:"));
