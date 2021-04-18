@@ -42,10 +42,9 @@ const mongoose = require("mongoose");
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect(`mongodb://${mongo_uri}`,  {
+mongoose.connect(`${mongo_uri}`,  {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false})
     .then(() => console.log("Database Connected Successfully"))
     .catch(err => console.log(err));
-
