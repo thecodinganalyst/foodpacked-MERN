@@ -21,7 +21,7 @@ app.use(express.static(path.join(__dirname, "client", "build")))
 
 const PORT = process.env.PORT || 8080;
 const secret = process.env.SECRET || "hello secret";
-const uri = process.env.MONGODB_URI;
+const mongo_uri = process.env.MONGODB_URI;
 
 app.get("/", (req, res) => {
   res.json({ message: "Hello server!" });
@@ -36,14 +36,14 @@ app.get("*", (req, res) => {
 
 // The app.listen() function is used to bind and listen the connections on the specified host and port.
 app.listen(PORT, () => {
-  console.log(`App listening at http://localhost:${PORT}`);
+  console.log(`App listening at ${PORT}`);
 });
 
 const mongoose = require("mongoose");
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect("mongodb://localhost:27017/foodpacked_db", {
+mongoose.connect(mongo_uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
