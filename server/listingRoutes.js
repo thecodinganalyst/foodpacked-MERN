@@ -1,5 +1,5 @@
 module.exports = (app) => {
-  const listings = require("../controllers/listingController.js");
+  const listings = require(__dirname + "/listingController.js");
 
   const router = require("express").Router();
 

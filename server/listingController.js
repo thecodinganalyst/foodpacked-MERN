@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 
-const Listing = require("../models/listingModel.js")(mongoose);
+const Listing = require(__dirname + "/listingModel.js")(mongoose);
 
 // use Mongoose helper functions for CRUD operations. Returns mongoose Query object.
 
