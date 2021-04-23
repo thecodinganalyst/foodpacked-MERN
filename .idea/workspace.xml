@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4e690bbe-ea24-43aa-b899-64e89ef7d437" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/services/listingDataService.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/services/listingDataService.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +17,14 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="1rF1Q7AQh7g0KIMs1Z4k6GGETwK" />
   <component name="ProjectViewState">
@@ -68,7 +76,7 @@
       <workItem from="1618812455933" duration="2869000" />
       <workItem from="1619085358708" duration="244000" />
       <workItem from="1619085611866" duration="124000" />
-      <workItem from="1619145334399" duration="10306000" />
+      <workItem from="1619145334399" duration="10546000" />
     </task>
     <servers />
   </component>
