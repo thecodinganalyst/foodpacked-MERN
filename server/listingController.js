@@ -34,10 +34,8 @@ exports.createNewListing = (req, res) => {
 };
 
 exports.retrieveAllListings = (req, res) => {
-  console.log("before")
   Listing.find()
     .then((data) => {
-      console.log("inside then")
       res.send(data);
     })
     .catch((err) => {

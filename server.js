@@ -5,35 +5,35 @@ const app = express();
 const dotenv = require("dotenv").config()
 
 // // CORS-enabled for only localhost:8081
-// var corsOptions = {
-//   origin: "http://localhost:8081",
-// };
+var corsOptions = {
+  origin: "http://localhost:3000",
+};
 
-app.use(cors);
+app.use(cors(corsOptions));
 
 // BodyParser middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Express to send static files to client
-app.use(express.static(path.join(__dirname, "client", "build")))
-
 const port = process.env.PORT || 8080;
 const secret = process.env.SECRET || "hello secret";
-const mongo_uri = process.env.MONGODB_URI;
-
-app.get("/", (req, res) => {
-  res.json({ message: "Hello server!" });
-});
+const mongo_uri = process.env.MONGODB_URI || "mongodb+srv://foodpacked-admin:WSw9wUzXOHvXHVCI@foodpacked-southeast.4awmu.mongodb.net/foodpacked-db?retryWrites=true&w=majority";
 
 // const routes = require('./routes/listingRoutes.js');
 // app.use('/api', routes);
 
 require(__dirname + "/server/listingRoutes.js")(app);
 
+// Express to send static files to client
+app.use(express.static(path.join(__dirname, "client", "build")))
+
 // catch-all, send the main index.html file back to the client if it didn't receive an unrecognized request
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
+
+app.get("/", (req, res) => {
+  res.json({ message: "Hello server!" });
 });
 
 // The app.listen() function is used to bind and listen the connections on the specified host and port.

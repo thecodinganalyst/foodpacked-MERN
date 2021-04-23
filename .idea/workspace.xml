@@ -3,11 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="4e690bbe-ea24-43aa-b899-64e89ef7d437" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/client/.eslintcache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/services/listingDataService.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/services/listingDataService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/listingController.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/listingController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/listingModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/listingModel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/listingRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/listingRoutes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/listingController.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/listingController.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,7 +16,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="feature/filterSearch" />
+        <entry key="$PROJECT_DIR$" value="016ee8ae9ea6437d1a7c65d009b4daab191fdb77" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -30,13 +29,14 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="go.import.settings.migrated" value="true" />
     <property name="javascript.nodejs.core.library.configured.version" value="14.15.0" />
     <property name="javascript.nodejs.core.library.typings.version" value="14.14.41" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
@@ -69,6 +69,9 @@
       <workItem from="1618557011360" duration="2144000" />
       <workItem from="1618563483118" duration="15863000" />
       <workItem from="1618812455933" duration="2869000" />
+      <workItem from="1619085358708" duration="244000" />
+      <workItem from="1619085611866" duration="124000" />
+      <workItem from="1619145334399" duration="8540000" />
     </task>
     <servers />
   </component>
