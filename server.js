@@ -19,9 +19,6 @@ const port = process.env.PORT || 8080;
 const secret = process.env.SECRET || "hello secret";
 const mongo_uri = process.env.MONGODB_URI || "mongodb+srv://foodpacked-admin:WSw9wUzXOHvXHVCI@foodpacked-southeast.4awmu.mongodb.net/foodpacked-db?retryWrites=true&w=majority";
 
-// const routes = require('./routes/listingRoutes.js');
-// app.use('/api', routes);
-
 require(__dirname + "/server/listingRoutes.js")(app);
 
 // Express to send static files to client

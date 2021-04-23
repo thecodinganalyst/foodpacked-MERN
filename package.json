@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node server.js",
     "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build",
-    "dev": "concurrently \"node server.js\" \"cd client && npm start\""
+    "dev": "concurrently \"node server.js\" \"cd client && npm start\"",
+    "dev-serveronly": "concurrently \"node server.js\" && \"cd client && npm run build\""
   },
   "engines": {
     "node": "14.15.0"
