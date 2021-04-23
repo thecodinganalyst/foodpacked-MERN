@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 
 const port = process.env.PORT || 8080;
 const secret = process.env.SECRET || "hello secret";
-const mongo_uri = process.env.MONGODB_URI || "mongodb+srv://foodpacked-admin:WSw9wUzXOHvXHVCI@foodpacked-southeast.4awmu.mongodb.net/foodpacked-db?retryWrites=true&w=majority";
+const mongo_uri = process.env.MONGODB_URI || "mongodb://localhost:27017/foodpacked_db";
 
 require(__dirname + "/server/listingRoutes.js")(app);
 
