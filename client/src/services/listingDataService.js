@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = "https://foodpacked.herokuapp.com/gitapi";
+axios.defaults.baseURL = "https://foodpacked.herokuapp.com/api";
 axios.defaults.headers.post["Content-Type"] = "application/json";
 
 class ListingDataService {
