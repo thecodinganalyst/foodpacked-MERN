@@ -6,7 +6,7 @@ const dotenv = require("dotenv").config()
 
 // // CORS-enabled for only localhost:8081
 var corsOptions = {
-  origin: "http://localhost:3000",
+  origin: "https://foodpacked.herokuapp.com",
 };
 
 app.use(cors(corsOptions));
